@@ -12,7 +12,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=1.1">
+    <link rel="stylesheet" href="../style.css?v=1.1">
+    <link rel="stylesheet" href="../mobile-fixes.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -23,8 +24,8 @@
 
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="/" class="logo">
-                <img src="/logo.png" alt="Bloomarina" class="logo-img">
+            <a href="../" class="logo">
+                <img src="../logo.png" alt="Bloomarina" class="logo-img">
             </a>
 
             <button class="mobile-toggle" aria-label="Toggle Navigation">
@@ -46,8 +47,8 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="hero" style="padding-bottom: 2rem;">
-            <div class="container hero-container" style="grid-template-columns: 1fr; text-align: center;">
+        <section class="hero hero-center" style="padding-bottom: 2rem;">
+            <div class="container hero-container">
                 <div class="hero-content fade-up">
                     <div class="pill-badge">
                         <span class="dot-indicator"></span>
@@ -57,7 +58,7 @@
                         Grow Your Career with <br>
                         <span class="gradient-text">Bloomarina</span>
                     </h1>
-                    <p class="hero-subtitle" style="margin: 0 auto; max-width: 700px;">
+                    <p class="hero-subtitle">
                         Join a team of passionate creators building the digital future. We are looking for innovators
                         who aren't afraid to break the mold.
                     </p>
@@ -68,8 +69,7 @@
         <!-- Perks / Culture -->
         <section class="services" style="padding-top: 0;">
             <div class="container">
-                <div class="services-grid"
-                    style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); text-align: center;">
+                <div class="services-grid">
                     <div class="service-box fade-up">
                         <i class="fas fa-clock service-icon"
                             style="font-size: 1.5rem; width: 50px; height: 50px; margin: 0 auto 1.5rem;"></i>
@@ -176,7 +176,7 @@
         </div>
     </footer>
 
-    <script src="/script.js"></script>
+    <script src="../script.js"></script>
 </body>
 
 </html>
