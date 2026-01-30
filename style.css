@@ -1672,4 +1672,265 @@ footer {
 footer .logo-img {
     height: 50px;
     margin-bottom: 1rem;
+}/* Careers Empty State */
+.empty-state-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    max-width: 600px;
+    margin: 0 auto;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.empty-state-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+}
+
+.empty-icon-container {
+    width: 80px;
+    height: 80px;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    position: relative;
+}
+
+.empty-icon-container i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.empty-icon-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid var(--primary-color);
+    animation: iconPulse 2s infinite;
+}
+
+@keyframes iconPulse {
+    0% {
+        width: 100%;
+        height: 100%;
+        opacity: 0.5;
+    }
+
+    100% {
+        width: 150%;
+        height: 150%;
+        opacity: 0;
+    }
+}
+
+.empty-state-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.empty-state-card p {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.talent-list {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.talent-pill {
+    background: var(--glass-surface);
+    border: 1px solid var(--glass-border);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}/* Unique Orbit/Cosmic Empty State */
+.orbit-wrapper {
+    position: relative;
+    max-width: 700px;
+    margin: 4rem auto;
+    text-align: center;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.orbit-system {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+/* Central Core */
+.orbit-core {
+    width: 140px;
+    height: 140px;
+    background: radial-gradient(circle at 30% 30%, var(--primary-color), #090909);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    box-shadow: 0 0 50px var(--primary-glow);
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.orbit-core i {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.orbit-core span {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Rings */
+.orbit-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    animation: rotateRing linear infinite;
+}
+
+.ring-1 {
+    width: 200px;
+    height: 200px;
+    border-color: rgba(99, 102, 241, 0.2);
+    animation-duration: 10s;
+}
+
+.ring-2 {
+    width: 280px;
+    height: 280px;
+    border-color: rgba(236, 72, 153, 0.2);
+    animation-duration: 15s;
+    animation-direction: reverse;
+}
+
+/* Planets / Dots */
+.orbit-planet {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    /* Start at edge */
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px #fff;
+}
+
+.ring-1 .orbit-planet {
+    background: var(--primary-color);
+    box-shadow: 0 0 15px var(--primary-color);
+}
+
+.ring-2 .orbit-planet {
+    background: var(--secondary-color);
+    box-shadow: 0 0 15px var(--secondary-color);
+}
+
+@keyframes rotateRing {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Unique Message Styling */
+.orbit-message h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, #fff, var(--text-muted));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.orbit-message p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 500px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+}
+
+/* Cosmic Button */
+.btn-cosmic {
+    position: relative;
+    padding: 1rem 2.5rem;
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-cosmic::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    opacity: 0.1;
+    z-index: -1;
+    transition: opacity 0.4s ease;
+}
+
+.btn-cosmic:hover {
+    border-color: transparent;
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.4);
+    transform: scale(1.05);
+}
+
+.btn-cosmic:hover::before {
+    opacity: 1;
 }
