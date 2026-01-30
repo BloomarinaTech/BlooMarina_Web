@@ -82,6 +82,12 @@
     .btn-outline {
         width: 100% !important;
     }
+
+    /* Hide Founders Connectors on Mobile */
+    .founders-connector,
+    .founders-connector-icon {
+        display: none !important;
+    }
 }
 
 /* Tech Stack Mobile Fix */
