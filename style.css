@@ -977,6 +977,8 @@ h6 {
 
 /* Footer */
 footer {
+    position: relative;
+    z-index: 50;
     border-top: 1px solid var(--glass-border);
     padding: 4rem 0 2rem;
     background: var(--bg-secondary);
@@ -1042,6 +1044,8 @@ footer {
 .legal {
     display: flex;
     gap: 2rem;
+    position: relative;
+    z-index: 51;
 }
 
 .legal a {
@@ -1660,7 +1664,9 @@ footer {
         transform: translateX(-50px) scale(0.8) translateZ(-100px);
         opacity: 0.4;
     }
-}/* Logo Image Styles */
+}
+
+/* Logo Image Styles */
 .logo-img {
     height: 40px;
     width: auto;
@@ -1672,7 +1678,9 @@ footer {
 footer .logo-img {
     height: 50px;
     margin-bottom: 1rem;
-}/* Careers Empty State */
+}
+
+/* Careers Empty State */
 .empty-state-card {
     background: var(--bg-secondary);
     border: 1px solid var(--glass-border);
@@ -1761,7 +1769,9 @@ footer .logo-img {
     border-radius: 20px;
     font-size: 0.9rem;
     color: var(--text-muted);
-}/* Unique Orbit/Cosmic Empty State */
+}
+
+/* Unique Orbit/Cosmic Empty State */
 .orbit-wrapper {
     position: relative;
     max-width: 700px;
@@ -1933,7 +1943,9 @@ footer .logo-img {
 
 .btn-cosmic:hover::before {
     opacity: 1;
-}/* Team Section Styles */
+}
+
+/* Team Section Styles */
 .team-section {
     padding: 6rem 0;
     position: relative;
@@ -2097,4 +2109,21 @@ footer .logo-img {
         font-size: 0.8rem;
         z-index: 2;
     }
+}/* FIX: Ensure Footer Links are Always Clickable */
+footer {
+    position: relative;
+    z-index: 100 !important;
+    /* Force top layer */
+}
+
+.legal {
+    position: relative;
+    z-index: 101 !important;
+}
+
+.legal a {
+    cursor: pointer !important;
+    position: relative;
+    z-index: 102 !important;
+    pointer-events: auto !important;
 }
