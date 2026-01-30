@@ -18,15 +18,46 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Smooth scrolling for navigation links
+    // Custom Smooth Scrolling with Easing (Slider Effect)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+
+            const target = document.querySelector(targetId);
             if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
+                // Close mobile menu if open
+                navLinks.classList.remove('active');
+                mobileToggle.classList.remove('active');
+
+                // Custom Scroll Animation
+                const headerOffset = 80;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                const startPosition = window.pageYOffset;
+                const distance = offsetPosition - startPosition;
+                const duration = 1000; // 1 second duration
+                let start = null;
+
+                function step(timestamp) {
+                    if (!start) start = timestamp;
+                    const progress = timestamp - start;
+                    const percentage = Math.min(progress / duration, 1);
+
+                    // Ease In Out Cubic
+                    const ease = percentage < 0.5 ?
+                        4 * percentage * percentage * percentage :
+                        1 - Math.pow(-2 * percentage + 2, 3) / 2;
+
+                    window.scrollTo(0, startPosition + distance * ease);
+
+                    if (progress < duration) {
+                        window.requestAnimationFrame(step);
+                    }
+                }
+
+                window.requestAnimationFrame(step);
             }
         });
     });
