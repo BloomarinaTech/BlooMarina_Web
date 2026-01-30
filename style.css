@@ -1392,3 +1392,272 @@ footer {
         transform: translateY(-50%) scaleX(0.1);
     }
 }
+
+/* Tech Stack Section */
+.tech-section {
+    padding: 6rem 0;
+    background: var(--bg-color);
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.tech-category {
+    background: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--glass-border);
+    transition: transform 0.3s ease;
+}
+
+.tech-category:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+}
+
+.tech-category h4 {
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.tech-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.tech-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    padding: 0.6rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.tech-pill:hover {
+    background: white;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.15);
+}
+
+.tech-pill i {
+    font-size: 1.1rem;
+}
+
+@media (max-width: 600px) {
+    .tech-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 3D Tech Slider */
+.slider-container-3d {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 400px;
+    margin: 3rem auto;
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider-3d-content {
+    position: relative;
+    width: 80%;
+    /* Card Width container */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+}
+
+.tech-card-3d {
+    position: absolute;
+    width: 320px;
+    height: 420px;
+    /* Increased height */
+    background: rgba(255, 255, 255, 0.05);
+    /* Very light glass */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    /* Increased top/bottom padding */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    /* Changed from center to ensure top isn't cut off */
+    text-align: center;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* Card States */
+.tech-card-3d.active {
+    transform: translateX(0) scale(1.1) translateZ(50px);
+    z-index: 10;
+    opacity: 1;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 30px rgba(14, 165, 233, 0.3);
+}
+
+.tech-card-3d.next {
+    transform: translateX(200px) scale(0.8) translateZ(-50px) rotateY(-15deg);
+    z-index: 5;
+    opacity: 0.6;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.tech-card-3d.prev {
+    transform: translateX(-200px) scale(0.8) translateZ(-50px) rotateY(15deg);
+    z-index: 5;
+    opacity: 0.6;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* Hidden cards (if more than 3) */
+.tech-card-3d {
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.tech-card-3d.active,
+.tech-card-3d.prev,
+.tech-card-3d.next {
+    opacity: 1;
+    /* Override opacity from generic rule */
+    pointer-events: auto;
+}
+
+
+/* Card Content */
+.card-icon-3d {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.tech-card-3d h4 {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    /* Reduced margin */
+}
+
+.tech-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.tech-list span {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1rem;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.tech-card-3d.active .tech-list span:hover {
+    background: rgba(14, 165, 233, 0.1);
+    color: white;
+    transform: translateX(5px);
+}
+
+.tech-list i {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    width: 25px;
+    text-align: center;
+}
+
+/* Navigation Controls */
+/* Navigation Controls */
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    z-index: 50;
+    pointer-events: none;
+    /* Allow clicks to pass through empty space */
+    padding: 0 1rem;
+    /* Adjust distance from edges */
+}
+
+.nav-btn {
+    pointer-events: auto;
+    /* Re-enable clicks */
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--primary-glow);
+}
+
+@media (max-width: 768px) {
+    .slider-container-3d {
+        height: 450px;
+    }
+
+    .tech-card-3d {
+        width: 280px;
+        height: 350px;
+    }
+
+    .tech-card-3d.next {
+        transform: translateX(50px) scale(0.8) translateZ(-100px);
+        opacity: 0.4;
+    }
+
+    .tech-card-3d.prev {
+        transform: translateX(-50px) scale(0.8) translateZ(-100px);
+        opacity: 0.4;
+    }
+}

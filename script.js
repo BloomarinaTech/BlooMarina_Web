@@ -130,5 +130,82 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // 3D Slider Logic
+    const init3DSlider = () => {
+        const cards = document.querySelectorAll('.tech-card-3d');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+
+        if (!cards.length) return;
+
+        let currentIndex = 0;
+        const totalCards = cards.length;
+
+        const updateSlider = () => {
+            cards.forEach((card, index) => {
+                // Reset Classes
+                card.classList.remove('active', 'prev', 'next');
+                card.style.removeProperty('opacity');
+                card.style.removeProperty('z-index');
+
+                // Handle Wrapping logic for prev/next
+                // Current is active
+                if (index === currentIndex) {
+                    card.classList.add('active');
+                }
+                // Next Card logic
+                else if (index === (currentIndex + 1) % totalCards) {
+                    card.classList.add('next');
+                }
+                // Prev Card logic
+                else if (index === (currentIndex - 1 + totalCards) % totalCards) {
+                    card.classList.add('prev');
+                }
+            });
+        };
+
+        // Auto Play
+        let autoPlayInterval;
+
+        const startAutoPlay = () => {
+            autoPlayInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % totalCards;
+                updateSlider();
+            }, 3000); // 3 seconds
+        };
+
+        const stopAutoPlay = () => {
+            clearInterval(autoPlayInterval);
+        };
+
+        // Event Listeners
+        nextBtn.addEventListener('click', () => {
+            stopAutoPlay();
+            currentIndex = (currentIndex + 1) % totalCards;
+            updateSlider();
+            startAutoPlay();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            stopAutoPlay();
+            currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+            updateSlider();
+            startAutoPlay();
+        });
+
+        // Pause on Hover
+        const sliderContainer = document.querySelector('.slider-container-3d');
+        if (sliderContainer) {
+            sliderContainer.addEventListener('mouseenter', stopAutoPlay);
+            sliderContainer.addEventListener('mouseleave', startAutoPlay);
+        }
+
+        // Initial state
+        updateSlider();
+        startAutoPlay();
+    };
+
+    init3DSlider();
+
     console.log("Bloomarina website loaded successfully!");
 });
