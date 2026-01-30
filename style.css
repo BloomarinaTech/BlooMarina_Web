@@ -917,6 +917,7 @@ h6 {
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     border: 1px solid var(--glass-border);
+    color: white;
 }
 
 .cta-content {
@@ -927,10 +928,11 @@ h6 {
 .cta-content h2 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    color: #ffffff !important;
 }
 
 .cta-content p {
-    color: var(--text-muted);
+    color: rgba(255, 255, 255, 0.9) !important;
     margin-bottom: 2rem;
 }
 
