@@ -168,14 +168,15 @@ document.addEventListener('DOMContentLoaded', () => {
         let autoPlayInterval;
 
         const startAutoPlay = () => {
+            stopAutoPlay(); // Safety clear to prevent stacked intervals
             autoPlayInterval = setInterval(() => {
                 currentIndex = (currentIndex + 1) % totalCards;
                 updateSlider();
-            }, 3000); // 3 seconds
+            }, 4000); // 4 seconds for slower, consistent pace
         };
 
         const stopAutoPlay = () => {
-            clearInterval(autoPlayInterval);
+            if (autoPlayInterval) clearInterval(autoPlayInterval);
         };
 
         // Event Listeners
