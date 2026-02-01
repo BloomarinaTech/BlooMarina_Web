@@ -663,54 +663,75 @@ h6 {
     background: var(--glass-border);
 }
 
-/* Buttons */
+/* Buttons Redesign */
 .btn-glow,
 .btn-outline,
 .btn-primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
-    padding: 0.9rem 1.8rem;
-    border-radius: 12px;
-    font-weight: 600;
+    gap: 0.8rem;
+    padding: 1rem 2.2rem;
+    border-radius: 50px;
+    /* Modern Pill Shape */
+    font-weight: 700;
     text-decoration: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    font-size: 1rem;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
 
+/* Get Started - Vibrant Gradient */
 .btn-glow {
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color) 0%, #a855f7 100%);
     color: white;
-    box-shadow: 0 0 20px var(--primary-glow);
+    box-shadow: 0 10px 20px -5px var(--primary-glow);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .btn-glow:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 30px var(--primary-glow);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 30px -5px var(--primary-glow);
+    background: linear-gradient(135deg, #a855f7 0%, var(--primary-color) 100%);
+    /* Gradient Shift */
 }
 
+/* Explore Services - Glass Outline */
 .btn-outline {
-    background: transparent;
-    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(15, 23, 42, 0.1);
+    /* Subtle dark border */
     color: var(--text-color);
+    backdrop-filter: blur(10px);
 }
 
 .btn-outline:hover {
-    background: var(--glass-bg);
-    border-color: var(--text-muted);
+    background: white;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transform: translateY(-3px);
 }
 
+/* Navbar Button (Start a Project) */
 .btn-primary {
-    background: white;
-    color: black;
-    padding: 0.6rem 1.25rem;
-    font-size: 0.9rem;
+    background: var(--text-color);
+    color: white;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .btn-primary:hover {
-    background: #e5e5e5;
+    background: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--primary-glow);
 }
+
+
 
 /* Hero Visuals */
 .hero-visual {
