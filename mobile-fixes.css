@@ -2,99 +2,352 @@
 
 /* Mobile Nav - Ensure it's hidden off-screen initially */
 @media (max-width: 900px) {
+
+    /* 1. Global Mobile Fixes (Ensure Fit) */
+    html,
+    body {
+        overflow-x: hidden !important;
+        width: 100vw !important;
+        position: relative;
+    }
+
+    .container {
+        width: 100% !important;
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+        overflow-x: hidden;
+    }
+
+    /* 2. Navbar & Toggle */
+    .navbar {
+        padding: 1rem 0 !important;
+        background: rgba(255, 255, 255, 0.9) !important;
+        backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    /* Toggle Button - Brand Colors */
+    .mobile-toggle {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 15px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background: white;
+        /* Clean white base */
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        border-radius: 50%;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        /* Subtle shadow */
+        z-index: 10001 !important;
+        cursor: pointer;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s;
+    }
+
+    .mobile-toggle .bar {
+        background: var(--text-color);
+        /* Dark Icon */
+    }
+
+    .mobile-toggle:active {
+        transform: scale(0.9);
+    }
+
+    /* Active Toggle State - Brand Gradient */
+    .mobile-toggle.active {
+        background: var(--primary-color);
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        transform: rotate(90deg);
+        box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+        border: none;
+    }
+
+    .mobile-toggle.active .bar {
+        background: white;
+        /* White Icon on active */
+    }
+
+    /* Icon Lines */
+    .bar {
+        position: absolute;
+        width: 24px;
+        height: 2px;
+        background: white;
+        /* White icon on dark btn */
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+
+    /* Default Hamburger */
+    .bar:nth-child(1) {
+        transform: translateY(-7px);
+    }
+
+    .bar:nth-child(2) {
+        transform: translateY(0);
+        width: 18px;
+        margin-left: 6px;
+    }
+
+    /* Aligned rightish */
+    .bar:nth-child(3) {
+        transform: translateY(7px);
+    }
+
+    /* Active Close "X" */
+    .mobile-toggle.active .bar:nth-child(1) {
+        transform: translateY(0) rotate(45deg);
+        width: 24px;
+        margin: 0;
+    }
+
+    .mobile-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-toggle.active .bar:nth-child(3) {
+        transform: translateY(0) rotate(-45deg);
+        width: 24px;
+        margin: 0;
+    }
+
+    /* 3. The Menu Overlay (Brand Themed Glass) */
     .nav-links {
         position: fixed !important;
         top: 0;
-        right: 0;
-        width: 100% !important;
+        left: 0;
+        width: 100vw !important;
         height: 100vh !important;
-        background: rgba(255, 255, 255, 0.7) !important;
-        backdrop-filter: blur(20px) !important;
-        -webkit-backdrop-filter: blur(20px) !important;
+        /* Glassmorphic White with subtle brand tint */
+        background: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: blur(25px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+
+        display: flex !important;
         flex-direction: column !important;
         justify-content: center !important;
         align-items: center !important;
-        transform: translateX(100%) !important;
-        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        z-index: 9000 !important;
+        z-index: 10000 !important;
+        /* Below toggle */
         padding: 2rem !important;
-        display: flex !important;
+        gap: 2rem !important;
+
+        /* Animation: Circle Clip */
+        clip-path: circle(0% at 100% 0%);
+        transition: clip-path 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+        pointer-events: none;
+    }
+
+    /* Decorative Blooms inside menu */
+    .nav-links::before {
+        content: '';
+        position: absolute;
+        top: -10%;
+        left: -10%;
+        width: 60vw;
+        height: 60vw;
+        background: var(--primary-color);
+        filter: blur(80px);
+        opacity: 0.15;
+        border-radius: 50%;
+        pointer-events: none;
+    }
+
+    .nav-links::after {
+        content: '';
+        position: absolute;
+        bottom: -10%;
+        right: -10%;
+        width: 60vw;
+        height: 60vw;
+        background: var(--secondary-color);
+        filter: blur(80px);
+        opacity: 0.15;
+        border-radius: 50%;
+        pointer-events: none;
     }
 
     .nav-links.active {
-        transform: translateX(0) !important;
+        clip-path: circle(150% at 100% 0%);
+        /* Expands to fill */
+        pointer-events: auto;
     }
 
+    /* Menu Items */
     .nav-links li {
+        width: 100%;
+        text-align: center;
         opacity: 0;
         transform: translateY(20px);
-        transition: all 0.4s ease;
-        margin: 1rem 0 !important;
-    }
-
-    .nav-link {
-        font-size: 1.5rem !important;
-        font-weight: 700 !important;
-        color: var(--text-color) !important;
-        text-transform: uppercase !important;
-        letter-spacing: 1px !important;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        position: relative;
+        z-index: 2;
     }
 
     .nav-links.active li {
         opacity: 1;
         transform: translateY(0);
+    }
+
+    /* Delays */
+    .nav-links.active li:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+
+    .nav-links.active li:nth-child(2) {
         transition-delay: 0.2s;
     }
 
-    .mobile-toggle {
+    .nav-links.active li:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+
+    .nav-links.active li:nth-child(4) {
+        transition-delay: 0.4s;
+    }
+
+    .nav-links.active li:nth-child(5) {
+        transition-delay: 0.5s;
+    }
+
+    .nav-links.active li:nth-child(6) {
+        transition-delay: 0.6s;
+    }
+
+    .nav-link {
+        font-family: var(--font-heading) !important;
+        font-size: 2rem !important;
+        font-weight: 700 !important;
+        color: var(--text-color) !important;
+        /* Dark text for contrast on light bg */
+        text-decoration: none;
+        display: inline-block;
+        position: relative;
+        transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+        color: var(--primary-color) !important;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* CTA Special */
+    .nav-links .btn-primary {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
+        color: white !important;
+        padding: 1rem 3rem !important;
+        font-size: 1.1rem !important;
+        margin-top: 1rem;
+        width: 100% !important;
+        max-width: 300px;
+        box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3) !important;
+        border: none !important;
+    }
+
+    /* 4. Fit Content Adjustments */
+    .hero {
+        padding: 8rem 0 4rem !important;
+        /* Less padding on mobile */
+        min-height: auto !important;
+    }
+
+    .hero-container {
         display: flex !important;
-        z-index: 10001 !important;
+        flex-direction: column !important;
+        text-align: center;
+        gap: 3rem !important;
     }
 
-    /* Hide desktop visuals */
-    .hero-visual,
-    .flower-abstract {
-        display: none !important;
-    }
-
-    /* Hero Text Sizing */
     .hero-title {
         font-size: 2.5rem !important;
         line-height: 1.2 !important;
+        word-wrap: break-word;
+        /* Prevent overflow */
     }
 
     .hero-subtitle {
-        font-size: 1rem !important;
+        font-size: 1.1rem !important;
+        padding: 0 1rem;
     }
 
-    /* Footer Stacking */
-    .footer-top,
-    .footer-links,
-    .footer-bottom {
-        grid-template-columns: 1fr !important;
-        display: grid !important;
-        text-align: center !important;
-        gap: 2rem !important;
-    }
-
-    .footer-brand {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
+    .hero-visual {
+        display: none !important;
+        /* Hide complex 3D on mobile for fit */
     }
 
     .cta-group {
-        flex-direction: column !important;
-        width: 100% !important;
-        gap: 1rem !important;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0 1rem;
     }
 
     .btn-glow,
     .btn-outline {
         width: 100% !important;
+        justify-content: center;
     }
 
-    /* Hide Founders Connectors on Mobile */
+    /* Stats Row Fit */
+    .stats-row {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+
+    /* Footer Stack */
+    .footer-top,
+    .footer-links {
+        display: flex !important;
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 2.5rem !important;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    /* Hide decorative elements that cause X-scroll */
+    .orb,
+    .flower-abstract {
+        opacity: 0.2 !important;
+        transform: scale(0.5);
+    }
+
+    .founders-connector {
+        display: none !important;
+    }
+
+    /* Fix Founders Grid for Mobile */
+    .founders-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 2rem !important;
+        margin-top: 0 !important;
+    }
+
+    .founder-card {
+        width: 100% !important;
+        max-width: 320px !important;
+        margin: 0 auto !important;
+    }
+
+    .team-section {
+        padding: 4rem 0 !important;
+    }
+
+    /* Ensure no connector lines mess up layout */
     .founders-connector,
     .founders-connector-icon {
         display: none !important;
